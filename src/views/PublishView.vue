@@ -372,10 +372,26 @@ const submitForm = async () => {
       cancelButtonText: '取消',
       type: 'success'
     }).then(() => {
-      ElMessage.success('发布成功！')
-      setTimeout(() => {
-        router.push('/profile')
-      }, 1500)
+      const newProduct = productStore.addProduct({
+        title: form.title,
+        price: form.price,
+        originalPrice: form.originalPrice || form.price,
+        condition: form.condition,
+        categoryId: form.categoryId,
+        images: form.images,
+        description: form.description,
+        tradeMethods: form.tradeMethods,
+        location: form.location
+      })
+      
+      if (newProduct) {
+        ElMessage.success('发布成功！商品已上架')
+        setTimeout(() => {
+          router.push('/profile')
+        }, 1500)
+      } else {
+        ElMessage.error('发布失败，请重试')
+      }
     }).catch(() => {})
   } catch (error) {
     console.log('表单验证失败', error)

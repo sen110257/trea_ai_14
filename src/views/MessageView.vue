@@ -268,7 +268,17 @@ const getNotificationColor = (type) => {
 }
 
 const openChat = (chatId) => {
-  ElMessage.info('打开聊天窗口')
+  const chat = chatList.value.find(c => c.id === chatId)
+  if (chat) {
+    ElMessage({
+      message: `正在打开与「${chat.name}」的聊天窗口...`,
+      type: 'success',
+      duration: 2000
+    })
+    if (chat.unread > 0) {
+      chat.unread = 0
+    }
+  }
 }
 </script>
 

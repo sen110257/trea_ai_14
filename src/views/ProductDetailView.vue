@@ -47,7 +47,9 @@
               <el-carousel 
                 height="400px"
                 :autoplay="false"
-                indicator-position="outside"
+                indicator-position="inside"
+                :loop="true"
+                @change="handleImageChange"
               >
                 <el-carousel-item v-for="(image, index) in product.images" :key="index">
                   <img 
@@ -275,25 +277,25 @@
       :show-close="true"
     >
       <div class="grid grid-cols-4 gap-4 py-4">
-        <div class="flex flex-col items-center cursor-pointer">
+        <div class="flex flex-col items-center cursor-pointer" @click="handleShare('wechat')">
           <div class="w-12 h-12 rounded-full bg-green-500 flex items-center justify-center mb-2">
             <el-icon class="text-white text-xl"><ChatDotRound /></el-icon>
           </div>
           <span class="text-xs text-gray-600 dark:text-gray-400">微信</span>
         </div>
-        <div class="flex flex-col items-center cursor-pointer">
+        <div class="flex flex-col items-center cursor-pointer" @click="handleShare('moments')">
           <div class="w-12 h-12 rounded-full bg-green-600 flex items-center justify-center mb-2">
             <el-icon class="text-white text-xl"><Share /></el-icon>
           </div>
           <span class="text-xs text-gray-600 dark:text-gray-400">朋友圈</span>
         </div>
-        <div class="flex flex-col items-center cursor-pointer">
+        <div class="flex flex-col items-center cursor-pointer" @click="handleShare('qq')">
           <div class="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center mb-2">
             <el-icon class="text-white text-xl"><ChatLineRound /></el-icon>
           </div>
           <span class="text-xs text-gray-600 dark:text-gray-400">QQ</span>
         </div>
-        <div class="flex flex-col items-center cursor-pointer">
+        <div class="flex flex-col items-center cursor-pointer" @click="handleShare('copy')">
           <div class="w-12 h-12 rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center mb-2">
             <el-icon class="text-gray-600 dark:text-gray-400 text-xl"><CopyDocument /></el-icon>
           </div>
@@ -389,15 +391,68 @@ const goBack = () => {
 }
 
 const toggleFavorite = () => {
+  const isFav = userStore.isFavorite(Number(route.params.id))
   userStore.toggleFavorite(Number(route.params.id))
+  if (isFav) {
+    ElMessage.info('已取消收藏')
+  } else {
+    ElMessage.success('已添加到收藏')
+  }
 }
 
 const startChat = () => {
-  ElMessage.success('已打开聊天窗口')
+  ElMessage({
+    message: `正在打开与「${product.value?.seller?.nickname || '卖家'}」的聊天窗口...`,
+    type: 'success',
+    duration: 2000
+  })
 }
 
 const handleBuy = () => {
-  ElMessage.success('已发送求购意向给卖家')
+  ElMessageBox.confirm(
+    `确定要发送求购意向给卖家「${product.value?.seller?.nickname || '卖家'}」吗？`,
+    '确认操作',
+    {
+      confirmButtonText: '确定发送',
+      cancelButtonText: '取消',
+      type: 'warning'
+    }
+  ).then(() => {
+    if (product.value) {
+      product.value.likes += 1
+    }
+    ElMessage.success('求购意向已发送！卖家会尽快联系您')
+  }).catch(() => {})
+}
+
+const handleShare = (platform) => {
+  const shareUrl = window.location.href
+  const shareTitle = product.value?.title || '闲置商品'
+  
+  const platformNames = {
+    wechat: '微信',
+    moments: '朋友圈',
+    qq: 'QQ',
+    copy: '复制链接'
+  }
+  
+  if (platform === 'copy') {
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      ElMessage.success('链接已复制到剪贴板')
+      showShare.value = false
+    }).catch(() => {
+      ElMessage.info(`请手动复制链接：${shareUrl}`)
+    })
+  } else {
+    ElMessage({
+      message: `正在分享到${platformNames[platform]}...`,
+      type: 'success',
+      duration: 2000,
+      onClose: () => {
+        showShare.value = false
+      }
+    })
+  }
 }
 
 const getConditionLabel = (condition) => {
@@ -442,6 +497,10 @@ const formatNumber = (num) => {
     return (num / 1000).toFixed(1) + 'k'
   }
   return num
+}
+
+const handleImageChange = (index) => {
+  currentImageIndex.value = index
 }
 
 onMounted(() => {

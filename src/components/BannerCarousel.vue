@@ -5,7 +5,9 @@
       :autoplay="true" 
       :interval="4000"
       :arrow="isMobile ? 'never' : 'hover'"
-      indicator-position="outside"
+      indicator-position="inside"
+      :loop="true"
+      direction="horizontal"
     >
       <el-carousel-item v-for="banner in banners" :key="banner.id">
         <div class="relative w-full h-full overflow-hidden">

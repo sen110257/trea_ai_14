@@ -1,0 +1,64 @@
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-tertiary: #94a3b8;
+  --border-color: #e2e8f0;
+  --shadow-color: rgba(0, 0, 0, 0.08);
+  --card-bg: #ffffff;
+  --gradient-start: #667eea;
+  --gradient-end: #764ba2;
+}
+
+.dark {
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-tertiary: #64748b;
+  --border-color: #334155;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --card-bg: #1e293b;
+  --gradient-start: #818cf8;
+  --gradient-end: #a78bfa;
+}
+
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+.primary-btn {
+  background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+  color: white;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.primary-btn:active {
+  transform: translateY(0);
+}
+
+.ghost-btn {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.ghost-btn:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--text-secondary);
+}

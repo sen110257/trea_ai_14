@@ -41,7 +41,7 @@
                     class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div class="absolute top-2 left-2 px-2 py-0.5 rounded-full text-xs font-medium text-white bg-gradient-to-r from-purple-500 to-pink-500 backdrop-blur-sm flex items-center gap-1">
-                    <el-icon class="text-xs"><Promotion /></el-icon>
+                    <el-icon class="text-xs"><Star /></el-icon>
                     3D 预览
                   </div>
                 </div>
@@ -112,7 +112,7 @@
           <div class="bg-gradient-to-r from-orange-400 via-red-400 to-pink-500 px-4 py-3">
             <div class="flex items-center justify-between">
               <div class="flex items-center gap-2">
-                <el-icon class="text-white text-xl"><Fire /></el-icon>
+                <el-icon class="text-white text-xl"><Trophy /></el-icon>
                 <h2 class="text-lg font-bold text-white">限时捡漏</h2>
                 <span class="px-2 py-0.5 bg-white/20 text-white text-xs rounded-full">
                   超值低价
@@ -239,7 +239,7 @@ import CategoryNav from '@/components/CategoryNav.vue'
 import ProductCard from '@/components/ProductCard.vue'
 import { useProductStore } from '@/stores/product'
 import { 
-  ArrowRight, Promotion, View, Location, Fire, Plus 
+  ArrowRight, Star, View, Location, Trophy, Plus 
 } from '@element-plus/icons-vue'
 
 const router = useRouter()

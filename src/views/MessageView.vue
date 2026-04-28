@@ -135,7 +135,7 @@ import { useRouter } from 'vue-router'
 import HeaderNav from '@/components/HeaderNav.vue'
 import TabBar from '@/components/TabBar.vue'
 import { 
-  ChatDotRound, Bell, Heart, Star, ShoppingCart,
+  ChatDotRound, Bell, Star, ShoppingCart,
   Warning, Checked, User, Message
 } from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
@@ -145,7 +145,7 @@ const router = useRouter()
 const activeTab = ref('chat')
 
 const notificationIcons = {
-  Heart: Heart,
+  Heart: Star,
   Star: Star,
   ShoppingCart: ShoppingCart,
   Warning: Warning,

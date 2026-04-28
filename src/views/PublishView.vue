@@ -103,7 +103,7 @@
           </div>
         </el-form-item>
         
-        <el-form-item label="原价（可选" class="mb-4">
+        <el-form-item label="原价（可选）" class="mb-4">
           <div class="flex items-center gap-3">
             <div class="flex items-center gap-2 flex-1">
               <span class="text-gray-400 font-medium">¥</span>
@@ -125,9 +125,11 @@
               v-for="c in conditionTypes" 
               :key="c.value"
               class="px-4 py-2 rounded-xl border transition-all text-sm font-medium"
-              :class="form.condition === c.value 
-                ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
-                : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-primary-300"
+              :class="[
+                form.condition === c.value 
+                  ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
+                  : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-primary-300'
+              ]"
               @click="form.condition = c.value"
             >
               {{ c.label }}
@@ -158,9 +160,11 @@
               v-for="method in tradeMethods" 
               :key="method.value"
               class="flex items-center gap-2 px-4 py-2 rounded-xl border cursor-pointer transition-all"
-              :class="form.tradeMethods.includes(method.value) 
-                ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
-                : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-primary-300"
+              :class="[
+                form.tradeMethods.includes(method.value) 
+                  ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
+                  : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-primary-300'
+              ]"
             >
               <el-checkbox 
                 :value="form.tradeMethods.includes(method.value)" 
@@ -212,12 +216,11 @@
   
   <el-dialog 
     v-model="showPreview" 
-    title="预览草稿预览"
+    title="预览草稿"
     width="90%"
     :show-close="true"
   >
     <div class="p-4">
-      <div class="mb-4">
       <div class="grid grid-cols-3 gap-2 mb-4">
         <div 
           v-for="(image, index) in form.images" 
@@ -236,6 +239,7 @@
       <p class="text-gray-600 dark:text-gray-300">{{ form.description || '未填写描述' }}</p>
     </div>
   </el-dialog>
+  </div>
 </template>
 
 <script setup>
@@ -243,7 +247,7 @@ import { ref, reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useProductStore } from '@/stores/product'
 import { 
-  ArrowLeft, Plus, Delete, Location 
+  ArrowLeft, Plus, Delete, Location, Document, User 
 } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 
@@ -259,8 +263,8 @@ const tradeMethods = computed(() => productStore.tradeMethods)
 
 const tradeIcons = {
   Location: Location,
-  Document: 'Document',
-  User: 'User'
+  Document: Document,
+  User: User
 }
 
 const form = reactive({

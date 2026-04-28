@@ -40,15 +40,15 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { Home, Grid, Message, User, Plus } from '@element-plus/icons-vue'
+import { House, Grid, Bell, User, Plus } from '@element-plus/icons-vue'
 
 const route = useRoute()
 const router = useRouter()
 
 const tabs = [
-  { path: '/', name: '首页', icon: Home },
+  { path: '/', name: '首页', icon: House },
   { path: '/category', name: '分类', icon: Grid },
-  { path: '/message', name: '消息', icon: Message, badge: 3 },
+  { path: '/message', name: '消息', icon: Bell, badge: 3 },
   { path: '/profile', name: '我的', icon: User }
 ]
 

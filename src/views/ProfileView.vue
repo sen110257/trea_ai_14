@@ -169,7 +169,7 @@
             class="flex flex-col items-center"
           >
             <div class="w-12 h-12 rounded-2xl bg-pink-100 dark:bg-pink-900/50 flex items-center justify-center mb-2">
-              <el-icon class="text-pink-500 text-xl"><Heart /></el-icon>
+              <el-icon class="text-pink-500 text-xl"><Star /></el-icon>
             </div>
             <span class="text-xs text-gray-600 dark:text-gray-400">我的收藏</span>
           </router-link>
@@ -320,7 +320,7 @@ import ProductCard from '@/components/ProductCard.vue'
 import { 
   Sunny, Moon, Setting, Camera, Edit, Star, Medal,
   ArrowRight, DocumentAdd, ShoppingCart, Close,
-  Heart, View, ShoppingBag, Money, Location, User,
+  View, ShoppingBag, Money, Location, User,
   InfoFilled, SwitchButton
 } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'

@@ -119,9 +119,11 @@
               v-for="method in tradeMethods" 
               :key="method.value"
               class="flex items-center gap-2 px-4 py-2 rounded-xl border cursor-pointer transition-all"
-              :class="form.tradeMethods.includes(method.value) 
-                ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
-                : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-primary-300"
+              :class="[
+                form.tradeMethods.includes(method.value) 
+                  ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
+                  : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-primary-300'
+              ]"
             >
               <el-checkbox 
                 :value="form.tradeMethods.includes(method.value)" 
@@ -152,6 +154,7 @@
       </button>
     </div>
   </div>
+  </div>
 </template>
 
 <script setup>
@@ -159,7 +162,7 @@ import { ref, reactive, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useProductStore } from '@/stores/product'
 import { 
-  ArrowLeft, Location 
+  ArrowLeft, Location, Document, User 
 } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 
@@ -173,8 +176,8 @@ const tradeMethods = computed(() => productStore.tradeMethods)
 
 const tradeIcons = {
   Location: Location,
-  Document: 'Document',
-  User: 'User'
+  Document: Document,
+  User: User
 }
 
 const form = reactive({

@@ -21,8 +21,8 @@
             @click="toggleFavorite"
           >
             <el-icon class="text-xl" :class="{ 'text-red-500': isFavorite }">
-              <Heart v-if="isFavorite" :fill="'currentColor'" />
-              <Heart v-else />
+              <Star v-if="isFavorite" :fill="'currentColor'" />
+              <Star v-else />
             </el-icon>
           </button>
           <button 
@@ -135,9 +135,11 @@
               v-for="method in tradeMethods" 
               :key="method.value"
               class="flex items-center gap-2 px-4 py-2 rounded-xl border transition-all"
-              :class="selectedTradeMethod === method.value 
-                ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
-                : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-primary-300'"
+              :class="[
+                selectedTradeMethod === method.value 
+                  ? 'border-primary-500 bg-primary-50 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400' 
+                  : 'border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:border-primary-300'
+              ]"
               @click="selectedTradeMethod = method.value"
             >
               <el-icon><component :is="tradeIcons[method.icon]" /></el-icon>
@@ -236,8 +238,8 @@
             @click="toggleFavorite"
           >
             <el-icon class="text-xl" :class="{ 'text-red-500': isFavorite }">
-              <Heart v-if="isFavorite" :fill="'currentColor'" />
-              <Heart v-else />
+              <Star v-if="isFavorite" :fill="'currentColor'" />
+              <Star v-else />
             </el-icon>
             <span class="text-xs mt-0.5">收藏</span>
           </button>
@@ -331,10 +333,11 @@ import ModelViewer3D from '@/components/ModelViewer3D.vue'
 import { useProductStore } from '@/stores/product'
 import { useUserStore } from '@/stores/user'
 import { 
-  ArrowLeft, Share, Heart, MoreFilled, View, ChatDotRound, 
+  ArrowLeft, Share, MoreFilled, View, ChatDotRound, 
   Clock, Location, Star, CircleCheckFilled, Refresh,
-  ChatLineRound, CopyDocument
+  ChatLineRound, CopyDocument, User, Document
 } from '@element-plus/icons-vue'
+import { ElMessage } from 'element-plus'
 
 const route = useRoute()
 const router = useRouter()

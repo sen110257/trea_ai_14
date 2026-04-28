@@ -47,9 +47,11 @@
             v-for="category in categories" 
             :key="category.id"
             class="flex-shrink-0 px-3 py-1.5 rounded-full text-sm font-medium transition-all"
-            :class="activeCategory === category.id 
-              ? 'bg-primary-500 text-white' 
-              : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'"
+            :class="[
+              activeCategory === category.id 
+                ? 'bg-primary-500 text-white' 
+                : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
+            ]"
             @click="activeCategory = category.id"
           >
             {{ category.name }}
@@ -142,6 +144,7 @@
   </main>
   
   <TabBar />
+  </div>
 </template>
 
 <script setup>

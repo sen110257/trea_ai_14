@@ -39,7 +39,7 @@ import { useRouter } from 'vue-router'
 import { useProductStore } from '@/stores/product'
 import { 
   Monitor, House, ShoppingBag, MagicStick, 
-  Cpu, Reading, Van, Dishwasher,
+  User, Reading, Van, Trophy,
   ArrowRight 
 } from '@element-plus/icons-vue'
 
@@ -53,10 +53,10 @@ const categoryIcons = {
   House,
   ShoppingBag,
   MagicStick,
-  Cpu,
+  Cpu: User,
   Reading,
   Van,
-  Dishwasher
+  Dishwasher: Trophy
 }
 
 const goToCategory = (categoryId) => {

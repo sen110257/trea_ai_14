@@ -78,7 +78,7 @@ import ProductCard from '@/components/ProductCard.vue'
 import { useProductStore } from '@/stores/product'
 import { 
   Monitor, House, ShoppingBag, MagicStick, 
-  Cpu, Reading, Van, Dishwasher,
+  User, Reading, Van, Trophy,
   ArrowRight, Refresh 
 } from '@element-plus/icons-vue'
 
@@ -94,10 +94,10 @@ const categoryIcons = {
   House,
   ShoppingBag,
   MagicStick,
-  Cpu,
+  Cpu: User,
   Reading,
   Van,
-  Dishwasher
+  Dishwasher: Trophy
 }
 
 const subCategories = {

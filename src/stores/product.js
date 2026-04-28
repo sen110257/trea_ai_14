@@ -471,6 +471,40 @@ export function useProductStore() {
     return result.slice(0, 6)
   }
 
+  const addProduct = (productData) => {
+    const newId = Math.max(...products.map(p => p.id), 0) + 1
+    const newProduct = {
+      id: newId,
+      title: productData.title,
+      price: productData.price,
+      originalPrice: productData.originalPrice || productData.price,
+      condition: productData.condition,
+      category: productData.categoryId,
+      images: productData.images,
+      description: productData.description,
+      specs: [],
+      seller: {
+        id: 999,
+        nickname: '我',
+        avatar: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=user%20avatar%20portrait%20friendly&image_size=square',
+        location: productData.location || '北京市',
+        rating: 5.0,
+        verified: false
+      },
+      location: productData.location || '北京市',
+      distance: 0.1,
+      publishTime: new Date().toISOString().split('T')[0],
+      views: 0,
+      likes: 0,
+      favorites: 0,
+      tags: [],
+      has3D: false,
+      tradeMethods: productData.tradeMethods || ['self']
+    }
+    products.unshift(newProduct)
+    return newProduct
+  }
+
   return {
     products,
     wantBuys,
@@ -486,6 +520,7 @@ export function useProductStore() {
     getFeaturedProducts,
     getBargainProducts,
     getNearbyProducts,
-    getRecommendProducts
+    getRecommendProducts,
+    addProduct
   }
 }
